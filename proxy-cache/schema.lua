@@ -30,7 +30,7 @@ return {
             },
             required = true
           }},
-	  { path = {
+	  { request_path = {
             type = "array",
             default = { "/"},
             elements = { type = "string" },
