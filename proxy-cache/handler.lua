@@ -123,7 +123,6 @@ local function cacheable_request(ngx, conf, cc)
   -- TODO refactor these searches to O(1)
   do
     local method = get_method()
-
     local method_match = false
     for i = 1, #conf.request_method do
       if conf.request_method[i] == method then
@@ -133,14 +132,19 @@ local function cacheable_request(ngx, conf, cc)
     end
 
    local request_p = ngx_get_uri_args()
+   local path_match = false
    for i = 1, #conf.request_path do
       if conf.request_path[i] == request_p then
-        method_match = true
+        path_match = true
         break
       end
     end 	
 
+
     if not method_match then
+      return false
+    end
+    if not path_match then
       return false
     end
   end
