@@ -131,7 +131,7 @@ local function cacheable_request(ngx, conf, cc)
       end
     end
 
-   local request_p = ngx_get_uri_args()
+   local request_p = ngx.var.request_uri
    local path_match = false
    for i = 1, #conf.request_path do
       if conf.request_path[i] == request_p then
